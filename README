@@ -1,1 +1,30 @@
-ok here is another information.
+<?php
+// define 'TextInputBox' class
+class TextInputBox{
+   private $name;
+   private $size;
+   private $maxlength;
+   // assign default values for properties of input box
+   public function __construct($name='default_name',$size=16,
+   $maxlength=32){
+     if(!preg_match("/[a-zA-Z]+/",$name)){
+       throw new Exception('Invalid value for name property!');
+     }
+     if(!is_int($size)||$size<0||$size>32){
+       throw new Exception('Invalid value for size property!');
+     }
+     if(!is_int($maxlength)||$maxlength<16||$maxlength>64){
+       throw new Exception('Invalid value for maxlength
+property!');
+     }
+     $this->name=$name;
+     $this->size=$size;
+     $this->maxlength=$maxlength;
+   }
+   // get (X)HTML markup of input text box  
+   public function getHTML(){
+     return '<input type="text" name="'.$this->name.'"
+size="'.$this->size.'" maxlength="'.$this->maxlength.'" />';
+   }
+}
+?>
